@@ -61,6 +61,31 @@ The CI pipeline automatically builds and stores a deployable artifact.
 - **Create a very simple UI** (JavaScript-based, using React, Vue, or plain HTML/CSS/JS) to interact with the CRUD application.
 - **Docker Compose the frontend with the backend (CRUD App)**, ensuring they run together seamlessly.
 
+### **🛠️ Mission Tasks' Documentation**
+
+## Mission 1
+
+Here’s a brief setup guide for developers cloning your repository, mars-app-CI-CD-SEIP:
+
+* Clone the repository:
+git clone https://github.com/DimiChatzipavlis/mars-app-CI-CD-SEIP.git
+
+* Navigate to the project directory:
+cd mars-app-CI-CD-SEIP
+
+* Install dependencies:
+pip install -r requirements.txt
+
+* Create the database:
+python create_database.py
+
+* Run the application:
+python app.py
+
+* Access the API:
+Visit http://127.0.0.1:5000/resources in a browser or API tool.
+Note: Ensure Python 3.x is installed on your system.
+
 
 ## Special Thanks
 The whole labatory's theory and assignment was carefully made by (**GitHub Username: `tasosger`**), (**GitHub Username: `Cristian-Scobioala`**).
