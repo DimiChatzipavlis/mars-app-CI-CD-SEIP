@@ -5,6 +5,9 @@ app = Flask(__name__)
 app.config['DATABASE'] = 'mars_resources.db'
 
 def get_db():
+    """Connect to the application's configured database. The connection
+    is stored in the application context.
+    """
     db = getattr(g, '_database', None)
     if db is None:
         db = g._database = sqlite3.connect(app.config['DATABASE'])
@@ -13,12 +16,14 @@ def get_db():
 
 @app.teardown_appcontext
 def close_connection(exception):
+    """Closes the database again at the end of the request."""
     db = getattr(g, '_database', None)
     if db is not None:
         db.close()
 
 @app.route('/resources', methods=['GET'])
 def get_resources():
+    """Returns a list of all resources."""
     db = get_db()
     cursor = db.execute('SELECT * FROM resources')
     resources = cursor.fetchall()
@@ -26,6 +31,7 @@ def get_resources():
 
 @app.route('/resources/<int:resource_id>', methods=['GET'])
 def get_resource(resource_id):
+    """Returns a specific resource by ID."""
     db = get_db()
     cursor = db.execute('SELECT * FROM resources WHERE id = ?', (resource_id,))
     resource = cursor.fetchone()
@@ -35,6 +41,7 @@ def get_resource(resource_id):
 
 @app.route('/resources', methods=['POST'])
 def create_resource():
+    """Creates a new resource."""
     data = request.get_json()
     if not data or 'name' not in data or 'quantity' not in data:
         return jsonify({'error': 'Missing name or quantity'}), 400
@@ -45,11 +52,15 @@ def create_resource():
 
 @app.route('/resources/<int:resource_id>', methods=['PUT'])
 def update_resource(resource_id):
+    """Updates an existing resource by ID."""
     data = request.get_json()
     if not data or 'name' not in data or 'quantity' not in data:
         return jsonify({'error': 'Missing name or quantity'}), 400
     db = get_db()
-    cursor = db.execute('UPDATE resources SET name = ?, quantity = ? WHERE id = ?', (data['name'], data['quantity'], resource_id))
+    cursor = db.execute(
+        'UPDATE resources SET name = ?, quantity = ? WHERE id = ?',
+        (data['name'], data['quantity'], resource_id)
+    )
     db.commit()
     if cursor.rowcount == 0:
         return jsonify({'error': 'Resource not found'}), 404
@@ -57,6 +68,7 @@ def update_resource(resource_id):
 
 @app.route('/resources/<int:resource_id>', methods=['DELETE'])
 def delete_resource(resource_id):
+    """Deletes a resource by ID."""
     db = get_db()
     cursor = db.execute('DELETE FROM resources WHERE id = ?', (resource_id,))
     db.commit()
@@ -65,4 +77,5 @@ def delete_resource(resource_id):
     return jsonify({'message': 'Resource deleted'})
 
 if __name__ == '__main__':
+    """Runs the Flask application if the script is executed directly."""
     app.run(debug=True)
