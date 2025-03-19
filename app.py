@@ -1,6 +1,6 @@
 """A simple CRUD application for managing space station resources."""
-from flask import Flask, g, jsonify, request
 import sqlite3
+from flask import Flask, g, jsonify, request
 
 app = Flask(__name__)
 app.config['DATABASE'] = 'mars_resources.db'
@@ -17,7 +17,7 @@ def get_db():
     return db
 
 @app.teardown_appcontext
-def close_connection(exception):
+def close_connection(_):
     """Closes the database again at the end of the request."""
     db = getattr(g, '_database', None)
     if db is not None:
