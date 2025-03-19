@@ -32,7 +32,7 @@ jobs:
         export PYTHONPATH="$PWD:$PYTHONPATH"
         pytest tests
     - name: Build Docker image
-      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/mars-mission-control:latest .
+      run: docker build -f DOCKERFILE -t ${{ secrets.DOCKER_USERNAME }}/mars-mission-control:latest .
     - name: Log in to Docker Hub
       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
     - name: Push Docker image to Docker Hub
