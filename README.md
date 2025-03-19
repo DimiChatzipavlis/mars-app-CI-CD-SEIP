@@ -90,7 +90,7 @@ Note: Ensure Python 3.x is installed on your system.
 
 ## Mission 2
 
-We make a CI/CD tool with Github Actions. We write the main.yml file, update the requirements.txt file with pytest and configure branch protection rules
+We make a CI/CD tool with Github Actions. We write the main.yml file, update the requirements.txt file with pytest and configure branch protection rules. For the code quality check we use pylint.
 
 
 ## Special Thanks
