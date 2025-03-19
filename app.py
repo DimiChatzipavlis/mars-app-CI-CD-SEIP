@@ -86,5 +86,4 @@ def delete_resource(resource_id):
     return jsonify({'message': 'Resource deleted'})
 
 if __name__ == '__main__':
-    """Runs the Flask application if the script is executed directly."""
     app.run(debug=True)
