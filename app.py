@@ -1,3 +1,4 @@
+"""A simple CRUD application for managing space station resources."""
 from flask import Flask, g, jsonify, request
 import sqlite3
 
@@ -5,8 +6,9 @@ app = Flask(__name__)
 app.config['DATABASE'] = 'mars_resources.db'
 
 def get_db():
-    """Connect to the application's configured database. The connection
-    is stored in the application context.
+    """Connect to the application's configured database.
+
+    The connection is stored in the application context.
     """
     db = getattr(g, '_database', None)
     if db is None:
@@ -46,9 +48,14 @@ def create_resource():
     if not data or 'name' not in data or 'quantity' not in data:
         return jsonify({'error': 'Missing name or quantity'}), 400
     db = get_db()
-    cursor = db.execute('INSERT INTO resources (name, quantity) VALUES (?, ?)', (data['name'], data['quantity']))
+    cursor = db.execute(
+        'INSERT INTO resources (name, quantity) VALUES (?, ?)',
+        (data['name'], data['quantity'])
+    )
     db.commit()
-    return jsonify({'id': cursor.lastrowid, 'name': data['name'], 'quantity': data['quantity']}), 201
+    return jsonify(
+        {'id': cursor.lastrowid, 'name': data['name'], 'quantity': data['quantity']}
+    ), 201
 
 @app.route('/resources/<int:resource_id>', methods=['PUT'])
 def update_resource(resource_id):
@@ -64,7 +71,9 @@ def update_resource(resource_id):
     db.commit()
     if cursor.rowcount == 0:
         return jsonify({'error': 'Resource not found'}), 404
-    return jsonify({'id': resource_id, 'name': data['name'], 'quantity': data['quantity']})
+    return jsonify(
+        {'id': resource_id, 'name': data['name'], 'quantity': data['quantity']}
+    )
 
 @app.route('/resources/<int:resource_id>', methods=['DELETE'])
 def delete_resource(resource_id):
