@@ -31,8 +31,6 @@ jobs:
         cd "$(pwd)"
         export PYTHONPATH="$PWD:$PYTHONPATH"
         pytest tests
-    - name: Debug Docker Username # REMOVE THIS STEP AFTER DEBUGGING
-      run: echo "Docker Hub Username: ${{ secrets.DOCKER_USERNAME }}"
     - name: Build Docker image
       run: docker build -t ${{ secrets.DOCKER_USERNAME }}/mars-mission-control:latest .
     - name: Log in to Docker Hub
