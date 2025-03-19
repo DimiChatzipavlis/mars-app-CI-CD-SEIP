@@ -92,6 +92,10 @@ Note: Ensure Python 3.x is installed on your system.
 
 We make a CI/CD tool with Github Actions. We write the main.yml file, update the requirements.txt file with pytest and configure branch protection rules. For the code quality check we use pylint.
 
+## Mission 3
+
+We write the python automation tool with the setup.py file. Afterwards, we create an appropiate docker file. Lastly, we update the main.yml file.
+
 
 ## Special Thanks
 The whole labatory's theory and assignment was carefully made by (**GitHub Username: `tasosger`**), (**GitHub Username: `Cristian-Scobioala`**).
