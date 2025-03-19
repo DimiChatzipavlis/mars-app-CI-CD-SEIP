@@ -13,7 +13,7 @@ However, the mission has strict compliance, reliability, and automation requirem
 
 and the core tasks are:
 
-## **🛠️ Mission Tasks**
+## **🛠️ Mission Tasks (as mentioned by the educational assignment)**
 
 ### 🚦 **Phase 1: Mission Repository Initialization**
 1. **Create a Git repository** for your project (GitHub).
@@ -87,6 +87,10 @@ Visit http://127.0.0.1:5000/resources in a browser or API tool.
 
 
 Note: Ensure Python 3.x is installed on your system.
+
+## Mission 2
+
+We make a CI/CD tool with Github Actions. We write the main.yml file, update the requirements.txt file with pytest and configure branch protection rules
 
 
 ## Special Thanks
