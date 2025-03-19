@@ -84,6 +84,8 @@ python app.py
 
 * Access the API:
 Visit http://127.0.0.1:5000/resources in a browser or API tool.
+
+
 Note: Ensure Python 3.x is installed on your system.
 
 
