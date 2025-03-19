@@ -18,7 +18,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install flake8 pytest pylint
+        pip install flake8 pytest pylint docker
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with PyLint
       run: pylint app.py
@@ -28,6 +28,12 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        cd "$(pwd)"  # Change directory to the root of the repository (still helpful)
-        export PYTHONPATH="$PWD:$PYTHONPATH" # Explicitly set PYTHONPATH
+        cd "$(pwd)"
+        export PYTHONPATH="$PWD:$PYTHONPATH"
         pytest tests
+    - name: Build Docker image
+      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/mars-mission-control:latest .
+    - name: Log in to Docker Hub
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+    - name: Push Docker image to Docker Hub
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/mars-mission-control:latest
