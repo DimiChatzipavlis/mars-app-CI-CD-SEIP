@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mars Resources Control</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Mars Resources</h1>
+
+    <div id="resource-list">
+        </div>
+
+    <h2>Add New Resource</h2>
+    <form id="add-resource-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required><br><br>
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" required><br><br>
+        <button type="submit">Add Resource</button>
+    </form>
+
+    <h2>Update Resource</h2>
+    <form id="update-resource-form">
+        <label for="update-id">ID to Update:</label>
+        <input type="number" id="update-id" required><br><br>
+        <label for="update-name">New Name:</label>
+        <input type="text" id="update-name"><br><br>
+        <label for="update-quantity">New Quantity:</label>
+        <input type="number" id="update-quantity"><br><br>
+        <button type="submit">Update Resource</button>
+    </form>
+
+    <h2>Delete Resource</h2>
+    <form id="delete-resource-form">
+        <label for="delete-id">ID to Delete:</label>
+        <input type="number" id="delete-id" required><br><br>
+        <button type="submit">Delete Resource</button>
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>
